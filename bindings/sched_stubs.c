@@ -14,7 +14,6 @@
 
 #include <mini-os/os.h>
 #include <mini-os/console.h>
-#include <mini-os/hyperviser.h>
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 
@@ -48,7 +47,6 @@ stub_sched_shutdown(value v_reason)
 CAMLprim value
 stub_hypervisor_suspend(value unit)
 {
-  pemns()	
   CAMLparam0();
   int cancelled;
 
