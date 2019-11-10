@@ -83,7 +83,7 @@ stub_hypervisor_suspend(value unit)
 						   (unsigned long)failsafe_callback, 0);
 
   init_time();
-  arch_rebuild_p2m();
+  //arch_rebuild_p2m();
 
   unmask_evtchn(start_info.console.domU.evtchn);
   unmask_evtchn(start_info.store_evtchn);
