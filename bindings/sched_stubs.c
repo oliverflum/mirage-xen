@@ -57,7 +57,7 @@ stub_hypervisor_suspend(value unit)
 
   /* canonicalize_pagetables can't cope with pagetable entries that are outside of the guest's mfns,
      so we must unmap anything outside of our space */
-  //unmap_shared_info();
+  unmap_shared_info();
 
   /* Actually do the suspend. When this function returns 0, we've been resumed */
   cancelled = HYPERVISOR_suspend(virt_to_mfn(&start_info));
@@ -75,7 +75,7 @@ stub_hypervisor_suspend(value unit)
   local_irq_enable();
 
   setup_xen_features();
-  //HYPERVISOR_shared_info = map_shared_info(start_info.shared_info);
+  HYPERVISOR_shared_info = map_shared_info(start_info.shared_info);
 
   /* Set up event and failsafe callback addresses. */
   HYPERVISOR_set_callbacks(
@@ -83,7 +83,7 @@ stub_hypervisor_suspend(value unit)
 						   (unsigned long)failsafe_callback, 0);
 
   init_time();
-  //arch_rebuild_p2m();
+  arch_rebuild_p2m();
 
   unmask_evtchn(start_info.console.domU.evtchn);
   unmask_evtchn(start_info.store_evtchn);
