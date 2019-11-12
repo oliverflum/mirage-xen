@@ -1,4 +1,22 @@
-## v3.4.0 (2018-04-22)
+## v5.0.0 (2019-11-01)
+
+* Revert the 4.0.0 change, Os_xen is now OS.Xen again (#20 @dinosaure)
+* Adapt to mirage-runtime hooks (see mirage/mirage#1010) for at_enter_iter / at_exit_iter / at_exit (#21 @hannesm)
+* Bump lower OCaml version to 4.06.0 (#21 @hannesm)
+
+## v4.0.1 (2019-07-05)
+
+* Fix mirage-xen pkg-config file to reflect correct location of
+  the bindings (@avsm)
+
+## v4.0.0 (2019-06-25)
+
+* Breaking change: move from the `OS.Xen` module to `Os_xen`, in
+  order to let packages specifically depend on a particular bit
+  of Xen functionality. To port code, just change the module reference
+  to `Os_xen` instead of `OS`. (#16 @TheLortex @avsm)
+
+## v3.4.0 (2019-04-22)
 
 * Drop support for old ocaml-gnt package (#12, by @talex5)
 * require dune, and conflict with broken version 1.9.1 (#13, by @hannesm)
