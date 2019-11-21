@@ -52,15 +52,19 @@ stub_hypervisor_suspend(value unit)
 
   printk("WARNING: mind the gap between platform and train\n");
   /* Turn the store and console mfns to pfns - required because xc_domain_restore uses these values */
+  printk("1")
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
+  printk("2")
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
 
   /* canonicalize_pagetables can't cope with pagetable entries that are outside of the guest's mfns,
      so we must unmap anything outside of our space */
-  unmap_shared_info();
+  //unmap_shared_info();
 
   /* Actually do the suspend. When this function returns 0, we've been resumed */
+  printk("3")
   cancelled = HYPERVISOR_suspend(virt_to_mfn(&start_info));
+  printk("REBOOT")
 
   if(cancelled) {
     start_info.store_mfn = pfn_to_mfn(start_info.store_mfn);
@@ -83,7 +87,7 @@ stub_hypervisor_suspend(value unit)
 						   (unsigned long)failsafe_callback, 0);
 
   init_time();
-  arch_rebuild_p2m();
+  //arch_rebuild_p2m();
 
   unmask_evtchn(start_info.console.domU.evtchn);
   unmask_evtchn(start_info.store_evtchn);
