@@ -79,7 +79,7 @@ stub_hypervisor_suspend(value unit)
   local_irq_enable();
 
   setup_xen_features();
-  HYPERVISOR_shared_info = map_shared_info(start_info.shared_info);
+  //HYPERVISOR_shared_info = map_shared_info(start_info.shared_info);
 
   /* Set up event and failsafe callback addresses. */
   HYPERVISOR_set_callbacks(
