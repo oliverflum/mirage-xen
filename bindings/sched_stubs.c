@@ -14,6 +14,7 @@
 
 #include <mini-os/os.h>
 #include <mini-os/console.h>
+#include <mini-os/arch_setup.h>
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 
