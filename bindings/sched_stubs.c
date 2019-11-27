@@ -59,7 +59,7 @@ stub_hypervisor_suspend(value unit)
 
   /* canonicalize_pagetables can't cope with pagetable entries that are outside of the guest's mfns,
      so we must unmap anything outside of our space */
-  //unmap_shared_info();
+  unmap_shared_info();
 
   /* Actually do the suspend. When this function returns 0, we've been resumed */
   printk("3");
@@ -79,7 +79,7 @@ stub_hypervisor_suspend(value unit)
   local_irq_enable();
 
   setup_xen_features();
-  //HYPERVISOR_shared_info = map_shared_info(start_info.shared_info);
+  HYPERVISOR_shared_info = map_shared_info(start_info.shared_info);
 
   /* Set up event and failsafe callback addresses. */
   HYPERVISOR_set_callbacks(
