@@ -55,13 +55,14 @@ stub_hypervisor_suspend(value unit)
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
   printk("2\n");
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
+  printk("3\n");
 
   /* canonicalize_pagetables can't cope with pagetable entries that are outside of the guest's mfns,
      so we must unmap anything outside of our space */
   unmap_shared_info();
 
   /* Actually do the suspend. When this function returns 0, we've been resumed */
-  printk("3\n");
+  printk("4\n");
   cancelled = HYPERVISOR_suspend(virt_to_mfn(&start_info));
 
   if(cancelled) {
