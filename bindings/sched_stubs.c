@@ -51,8 +51,9 @@ stub_hypervisor_suspend(value unit)
 
   printk("WARNING: mind the gap between platform and train\n");
   /* Turn the store and console mfns to pfns - required because xc_domain_restore uses these values */
-  printk("1\n");
+  printk("1: %i\n",start_info.store_mfn);
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
+  printk("New_MFN: %i\n",start_info.store_mfn);
   printk("2: %i\n", start_info.console.domU.mfn);
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
   printk("3\n");
