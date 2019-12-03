@@ -17,7 +17,7 @@
 #include <mini-os/arch_setup.h>
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
-#include <unistd.h>
+
 void init_time();
 void arch_rebuild_p2m();
 void setup_xen_features(void);
