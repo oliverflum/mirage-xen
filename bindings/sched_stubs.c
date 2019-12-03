@@ -53,7 +53,7 @@ stub_hypervisor_suspend(value unit)
   /* Turn the store and console mfns to pfns - required because xc_domain_restore uses these values */
   printk("1\n");
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
-  printk("2\n");
+  printk("2: %i\n", start_info.console.domU.mfn);
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
   printk("3\n");
 
