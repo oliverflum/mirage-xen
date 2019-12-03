@@ -18,8 +18,6 @@
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 
-shared_info_t *map_shared_info(unsigned long pa);
-void unmap_shared_info();
 void init_time();
 void arch_rebuild_p2m();
 void setup_xen_features(void);
@@ -53,9 +51,9 @@ stub_hypervisor_suspend(value unit)
 
   printk("WARNING: mind the gap between platform and train\n");
   /* Turn the store and console mfns to pfns - required because xc_domain_restore uses these values */
-  printk("1");
+  printk("1\n");
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
-  printk("2");
+  printk("2\n");
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
 
   /* canonicalize_pagetables can't cope with pagetable entries that are outside of the guest's mfns,
@@ -63,14 +61,15 @@ stub_hypervisor_suspend(value unit)
   unmap_shared_info();
 
   /* Actually do the suspend. When this function returns 0, we've been resumed */
-  printk("3");
+  printk("3\n");
   cancelled = HYPERVISOR_suspend(virt_to_mfn(&start_info));
-  printk("REBOOT");
 
   if(cancelled) {
+    printk("SUSPEND FAILED");
     start_info.store_mfn = pfn_to_mfn(start_info.store_mfn);
     start_info.console.domU.mfn = pfn_to_mfn(start_info.console.domU.mfn);
   }
+  printk("REBOOTED");
 
   /* Reinitialise several things */
   trap_init();
