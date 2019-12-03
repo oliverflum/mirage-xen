@@ -54,10 +54,10 @@ stub_hypervisor_suspend(value unit)
   printk("1: %i\n",start_info.store_mfn);
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
   printk("New_MFN: %i\n",start_info.store_mfn);
-  sleep(2)
-  printk("Gesundes schläfchen")
-  sleep(2)
-  printk("Und nochmal")
+  sleep(2);
+  printk("Gesundes schläfchen");
+  sleep(2);
+  printk("Und nochmal");
   printk("2: %i\n", start_info.console.domU.mfn);
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
   printk("New_MFN: %i\n",start_info.console.domU.mfn);
