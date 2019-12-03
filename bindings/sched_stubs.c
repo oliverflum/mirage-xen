@@ -17,7 +17,7 @@
 #include <mini-os/arch_setup.h>
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
-
+#include <unistd.h>
 void init_time();
 void arch_rebuild_p2m();
 void setup_xen_features(void);
@@ -54,8 +54,13 @@ stub_hypervisor_suspend(value unit)
   printk("1: %i\n",start_info.store_mfn);
   start_info.store_mfn = mfn_to_pfn(start_info.store_mfn);
   printk("New_MFN: %i\n",start_info.store_mfn);
+  sleep(2)
+  printk("Gesundes schläfchen")
+  sleep(2)
+  printk("Und nochmal")
   printk("2: %i\n", start_info.console.domU.mfn);
   start_info.console.domU.mfn = mfn_to_pfn(start_info.console.domU.mfn);
+  printk("New_MFN: %i\n",start_info.console.domU.mfn);
   printk("3\n");
 
   /* canonicalize_pagetables can't cope with pagetable entries that are outside of the guest's mfns,
